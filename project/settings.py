@@ -50,18 +50,23 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
 
     # my apps
-    'api_Auth',
+    'todo',
     'account',
 ]
 
-AUTH_USER_MODEL = 'account.Account'
-
-
 REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',  # enables simple command line authentication
+        'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
     )
 }
+
+AUTH_USER_MODEL = 'account.Account'
+
 
 
 
